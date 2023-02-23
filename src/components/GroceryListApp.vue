@@ -4,10 +4,10 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <div>
-    <header>
-      <nav>
+    <header class="py-12 h-12 flex items-center">
+      <nav class="w-full flex justify-center mx-auto">
         <RouterLink
-          class="mr-12 text-base md:text-xl"
+          class="mr-24 text-base md:text-xl"
           :to="{ name: 'grocery-list-page' }"
           >Grocery List</RouterLink
         >
@@ -20,18 +20,4 @@ import { RouterLink, RouterView } from "vue-router";
   </div>
 </template>
 
-<style scoped>
-header {
-  height: 8rem;
-  display: flex;
-  align-items: center;
-}
-nav {
-  margin: 0 auto;
-  padding: 0 2rem;
-  height: 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-</style>
+<style scoped></style>

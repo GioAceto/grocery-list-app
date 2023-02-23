@@ -1,5 +1,5 @@
 <template>
-  <div class="grocery-list">
+  <div class="grocery-list flex justify-center">
     <ListForm />
     <div class="list">
       <ul>
