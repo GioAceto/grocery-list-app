@@ -1,7 +1,9 @@
 <template>
-  <div class="grocery-list flex justify-center">
-    <ListForm />
-    <div class="list">
+  <div class="grocery-list">
+    <div class="mb-8 flex justify-center">
+      <ListForm />
+    </div>
+    <div class="list flex justify-center">
       <ul>
         <li v-for="(item, index) in store.groceryList" :key="index">
           <span class="mr-4">{{ item.category }}</span
