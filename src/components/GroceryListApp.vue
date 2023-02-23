@@ -12,7 +12,7 @@ import { RouterLink, RouterView } from "vue-router";
           >Grocery List</RouterLink
         >
         <RouterLink class="text-base md:text-xl" :to="{ name: 'about-page' }"
-          >About This App</RouterLink
+          >App Info</RouterLink
         >
       </nav>
     </header>
