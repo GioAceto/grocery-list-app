@@ -7,9 +7,14 @@ export const useGroceryListStore = defineStore("groceryList", {
     id: 0,
     categories: [
       {
-        name: "Produce",
+        name: "Vegetables",
         icon: "fa-solid fa-carrot",
         color: "bg-green-300",
+      },
+      {
+        name: "Fruit",
+        icon: "fa-solid fa-apple-whole",
+        color: "bg-lime-300",
       },
       {
         name: "Dairy",
