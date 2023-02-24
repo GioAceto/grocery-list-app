@@ -18,6 +18,8 @@ export const useGroceryListStore = defineStore("groceryList", {
       "Candy",
       "Alcohol",
       "Frozen",
+      "Clothing",
+      "Electronic",
       "Other",
     ],
     units: ["lb", "oz", "pcs", "g", "gal", "l", "c", "mg", "pt", "qt", "bch"],

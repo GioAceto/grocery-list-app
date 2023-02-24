@@ -18,6 +18,8 @@
       <li>Pinia</li>
       <li>Vue Router</li>
       <li>Tailwind CSS</li>
+      <li>Font Awesome</li>
+      <li>Google Fonts</li>
     </ul>
   </div>
 </template>
