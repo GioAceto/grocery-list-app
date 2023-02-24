@@ -11,10 +11,10 @@
         <select
           id="category"
           v-model="category"
-          class="mr-4 py-2 px-4 w-40 bg-gray-200 appearance-none border-2 border-gray-200 rounded text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 select"
+          class="mr-4 py-2 px-4 w-56 bg-gray-200 appearance-none border-2 border-gray-200 rounded text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 select"
         >
           <option v-for="(category, index) in store.categories" :key="index">
-            {{ category }}
+            {{ category.name }}
           </option>
         </select>
       </div>
@@ -70,13 +70,11 @@ const units = ref("lb");
 const store = useGroceryListStore();
 
 const addItemAndClear = () => {
-  console.log(category.value, units.value);
   if (
     category.value.length === 0 ||
     item.value.length === 0 ||
     qty.value.length === 0
   ) {
-    console.log("FAIL");
     return;
   }
   store.addItem(item, category, qty, units);

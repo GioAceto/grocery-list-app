@@ -16,14 +16,18 @@ import {
   faAppleWhole,
   faIceCream,
   faGlassWater,
-  faSoap,
+  faPumpSoap,
   faCandyCane,
   faWineBottle,
   faSocks,
   faTabletScreenButton,
   faShapes,
   faCartShopping,
+  faJugDetergent,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faFish,
@@ -35,13 +39,17 @@ library.add(
   faAppleWhole,
   faIceCream,
   faGlassWater,
-  faSoap,
+  faPumpSoap,
   faCandyCane,
   faWineBottle,
   faSocks,
   faTabletScreenButton,
+  faJugDetergent,
   faShapes,
-  faCartShopping
+  faCartShopping,
+  faSquare,
+  faSquareCheck,
+  faXmark
 );
 
 createApp(App)
