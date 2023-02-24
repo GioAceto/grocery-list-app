@@ -3,7 +3,9 @@
     <div class="mb-8 flex justify-center">
       <ListForm />
     </div>
-    <div class="container mx-auto flex flex-col items-center text-sm">
+    <div
+      class="container mx-auto flex flex-col items-center text-sm overflow-y-scroll"
+    >
       <div v-for="(item, index) in store.groceryList" :key="index" class="item">
         <div
           class="my-2 pt-2 px-4 h-12 rounded flex flex-row justify-between items-center"
@@ -52,7 +54,7 @@ const store = useGroceryListStore();
 </script>
 <style scoped>
 .container {
-  max-height: 40rem;
+  height: 54vh;
 }
 
 .item {
