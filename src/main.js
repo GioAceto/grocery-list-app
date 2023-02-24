@@ -21,8 +21,8 @@ import {
   faWineBottle,
   faSocks,
   faTabletScreenButton,
-  faCartShopping,
   faShapes,
+  faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -40,7 +40,8 @@ library.add(
   faWineBottle,
   faSocks,
   faTabletScreenButton,
-  faShapes
+  faShapes,
+  faCartShopping
 );
 
 createApp(App)
