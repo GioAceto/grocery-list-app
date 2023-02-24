@@ -8,7 +8,8 @@
         <li v-for="(item, index) in store.groceryList" :key="index">
           <span class="mr-4">{{ item.category }}</span
           ><span class="mr-4">{{ item.item }}</span
-          ><span>Qty: {{ item.quantity }}</span>
+          ><span class="mr-1">Qty: {{ item.quantity }}</span
+          ><span>{{ item.units }}</span>
         </li>
       </ul>
     </div>

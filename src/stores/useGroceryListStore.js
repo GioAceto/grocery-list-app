@@ -17,15 +17,19 @@ export const useGroceryListStore = defineStore("groceryList", {
       "Pharmacy",
       "Candy",
       "Alcohol",
+      "Frozen",
+      "Other",
     ],
+    units: ["lb", "oz", "pcs", "g", "gal", "l", "c", "mg", "pt", "qt", "bch"],
   }),
   actions: {
-    addItem(item, category, qty) {
+    addItem(item, category, qty, units) {
       this.groceryList.push({
         id: this.id++,
         category: category.value,
         item: item.value,
         quantity: qty.value,
+        units: units.value,
         completed: false,
       });
     },
