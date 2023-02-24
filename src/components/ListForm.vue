@@ -36,7 +36,7 @@
         <input
           id="quantity"
           v-model="qty"
-          class="mr-4 py-2 px-4 w-16 bg-gray-200 appearance-none border-2 border-gray-200 rounded text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+          class="mr-2 py-2 px-4 w-20 bg-gray-200 appearance-none border-2 border-gray-200 rounded text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
           type="text"
           maxLength="4"
         />

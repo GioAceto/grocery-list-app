@@ -13,7 +13,7 @@
           ]"
         >
           <div
-            @click="store.toggleCompleted(index)"
+            @click="store.toggleCompleted(item.id)"
             class="pb-2 cursor-pointer w-2/12"
           >
             <font-awesome-icon
@@ -33,7 +33,10 @@
           <div class="ml-2 pb-2 w-3/12 whitespace-nowrap">
             {{ `x ${item.quantity} ${item.units}` }}
           </div>
-          <div class="pb-2 ml-4 cursor-pointer w-1/12">
+          <div
+            @click="store.deleteItem(item.id)"
+            class="pb-2 ml-4 cursor-pointer w-1/12"
+          >
             <font-awesome-icon icon="fa-solid fa-xmark" />
           </div>
         </div>
