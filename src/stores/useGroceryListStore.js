@@ -5,6 +5,13 @@ export const useGroceryListStore = defineStore("groceryList", {
   state: () => ({
     groceryList: [],
     id: 0,
+    showDeleteModal: false,
+    selectedItem: {
+      id: null,
+      item: null,
+      category: null,
+    },
+    duplicateFound: false,
     categories: [
       {
         name: "Vegetable",
@@ -132,6 +139,19 @@ export const useGroceryListStore = defineStore("groceryList", {
   }),
   actions: {
     addItem(item, category, qty, units) {
+      if (this.groceryList.length > 0) {
+        if (
+          this.groceryList.find(
+            (obj) =>
+              obj.item === item.value && obj.category.name === category.value
+          )
+        ) {
+          this.duplicateFound = true;
+          this.selectedItem.item = item;
+          this.selectedItem.category = category;
+          return;
+        }
+      }
       this.groceryList.push({
         id: this.id++,
         category: this.categories.find((obj) => obj.name === category.value),
@@ -143,6 +163,7 @@ export const useGroceryListStore = defineStore("groceryList", {
     },
     deleteItem(itemId) {
       this.groceryList = this.groceryList.filter((object) => {
+        this.showDeleteModal = false;
         return object.id !== itemId;
       });
     },

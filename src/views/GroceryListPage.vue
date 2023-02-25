@@ -1,5 +1,7 @@
 <template>
   <div class="grocery-list">
+    <DeleteModal v-if="store.showDeleteModal" />
+    <DuplicateModal v-if="store.duplicateFound" />
     <div class="mb-8 flex justify-center">
       <ListForm />
     </div>
@@ -40,11 +42,12 @@
             {{ `x ${item.quantity} ${item.units}` }}
           </div>
           <div
-            @click="store.deleteItem(item.id)"
+            @click="toggleDeleteModal(item.id, item.item)"
             class="ml-4 flex justify-center items-center cursor-pointer w-1/12"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
           </div>
+          <DeleteModal v-if="store.showDeleteModal" />
         </div>
       </div>
     </div>
@@ -53,8 +56,15 @@
 <script setup>
 import ListForm from "../components/ListForm.vue";
 import { useGroceryListStore } from "../stores/useGroceryListStore";
+import DeleteModal from "../components/DeleteModal.vue";
+import DuplicateModal from "../components/DuplicateModal.vue";
 
 const store = useGroceryListStore();
+
+const toggleDeleteModal = (id, item) => {
+  store.selectedItem = { id: id, item: item };
+  store.showDeleteModal = true;
+};
 </script>
 <style scoped>
 .container {
