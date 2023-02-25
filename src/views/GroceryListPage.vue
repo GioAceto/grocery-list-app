@@ -32,13 +32,11 @@
             <font-awesome-icon :icon="item.category.icon" />
           </div>
           <div
-            class="w-5/12 flex justify-center items-center overflow-x-scroll whitespace-nowrap h-full"
+            class="w-5/12 flex items-center overflow-x-scroll whitespace-nowrap h-full"
           >
             {{ item.item }}
           </div>
-          <div
-            class="ml-2 flex justify-center items-center w-3/12 whitespace-nowrap"
-          >
+          <div class="ml-2 flex items-center w-3/12 whitespace-nowrap">
             {{ `x ${item.quantity} ${item.units}` }}
           </div>
           <div
