@@ -63,7 +63,7 @@
 import { ref } from "vue";
 import { useGroceryListStore } from "../stores/useGroceryListStore";
 
-const category = ref("Vegetables");
+const category = ref("Vegetable");
 const item = ref("");
 const qty = ref("");
 const units = ref("lb");

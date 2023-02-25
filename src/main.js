@@ -25,6 +25,11 @@ import {
   faCartShopping,
   faJugDetergent,
   faXmark,
+  faBottleWater,
+  faPaw,
+  faStapler,
+  faCar,
+  faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
@@ -47,6 +52,11 @@ library.add(
   faJugDetergent,
   faShapes,
   faCartShopping,
+  faBottleWater,
+  faPaw,
+  faStapler,
+  faCar,
+  faBasketShopping,
   faSquare,
   faSquareCheck,
   faXmark

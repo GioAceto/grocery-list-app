@@ -7,7 +7,7 @@ export const useGroceryListStore = defineStore("groceryList", {
     id: 0,
     categories: [
       {
-        name: "Vegetables",
+        name: "Vegetable",
         icon: "fa-solid fa-carrot",
         color: "bg-green-300",
       },
@@ -32,8 +32,8 @@ export const useGroceryListStore = defineStore("groceryList", {
         color: "bg-orange-300",
       },
       {
-        name: "Grocery",
-        icon: "fa-solid fa-cart-shopping",
+        name: "Pantry",
+        icon: "fa-solid fa-basket-shopping",
         color: "bg-zinc-200",
       },
       {
@@ -77,6 +77,11 @@ export const useGroceryListStore = defineStore("groceryList", {
         color: "bg-sky-300",
       },
       {
+        name: "Beverage",
+        icon: "fa-solid fa-bottle-water",
+        color: "bg-cyan-100",
+      },
+      {
         name: "Clothing",
         icon: "fa-solid fa-socks",
         color: "bg-lime-100",
@@ -85,6 +90,21 @@ export const useGroceryListStore = defineStore("groceryList", {
         name: "Electronic",
         icon: "fa-solid fa-tablet-screen-button",
         color: "bg-yellow-300",
+      },
+      {
+        name: "Pet",
+        icon: "fa-solid fa-paw",
+        color: "bg-yellow-200",
+      },
+      {
+        name: "Automotive",
+        icon: "fa-solid fa-car",
+        color: "bg-gray-200",
+      },
+      {
+        name: "Supply",
+        icon: "fa-solid fa-stapler",
+        color: "bg-indigo-100",
       },
       {
         name: "Other",

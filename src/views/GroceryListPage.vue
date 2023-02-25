@@ -8,7 +8,7 @@
     >
       <div v-for="(item, index) in store.groceryList" :key="index" class="item">
         <div
-          class="my-2 pt-2 px-4 h-12 rounded flex flex-row justify-between items-center"
+          class="my-2 px-4 h-12 rounded flex flex-row justify-between items-center"
           :class="[
             item.category.color,
             item.completed ? 'strike-through' : false,
@@ -16,7 +16,7 @@
         >
           <div
             @click="store.toggleCompleted(item.id)"
-            class="pb-2 cursor-pointer w-2/12"
+            class="cursor-pointer w-2/12 flex justify-center items-center"
           >
             <font-awesome-icon
               :icon="
@@ -26,18 +26,22 @@
               "
             />
           </div>
-          <div class="pb-2 w-2/12">
+          <div class="w-2/12 flex justify-center items-center">
             <font-awesome-icon :icon="item.category.icon" />
           </div>
-          <div class="pb-2 w-5/12 overflow-x-scroll whitespace-nowrap">
+          <div
+            class="w-5/12 flex justify-center items-center overflow-x-scroll whitespace-nowrap h-full"
+          >
             {{ item.item }}
           </div>
-          <div class="ml-2 pb-2 w-3/12 whitespace-nowrap">
+          <div
+            class="ml-2 flex justify-center items-center w-3/12 whitespace-nowrap"
+          >
             {{ `x ${item.quantity} ${item.units}` }}
           </div>
           <div
             @click="store.deleteItem(item.id)"
-            class="pb-2 ml-4 cursor-pointer w-1/12"
+            class="ml-4 flex justify-center items-center cursor-pointer w-1/12"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
           </div>
