@@ -92,13 +92,6 @@
 
 <script setup>
 import { useGroceryListStore } from "../stores/useGroceryListStore";
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
-} from "@headlessui/vue";
 import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 
 const store = useGroceryListStore();
