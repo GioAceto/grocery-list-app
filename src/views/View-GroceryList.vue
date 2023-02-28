@@ -38,49 +38,51 @@
       <div
         class="container mx-auto flex flex-col items-center text-sm overflow-y-scroll"
       >
-        <div
-          v-for="(item, index) in store.groceryList"
-          :key="index"
-          class="item"
-        >
+        <TransitionGroup name="list" tag="div">
           <div
-            class="my-2 px-4 h-12 rounded flex flex-row justify-between items-center"
-            :class="[
-              item.category.color,
-              item.completed ? 'strike-through' : false,
-            ]"
+            v-for="(item, index) in store.groceryList"
+            :key="index"
+            class="item"
           >
-            <button
-              @click="store.toggleCompleted(item.id, item.completed)"
-              class="cursor-pointer w-2/12 flex justify-center items-center"
-            >
-              <font-awesome-icon
-                :icon="
-                  item.completed
-                    ? 'fa-regular fa-square-check'
-                    : 'fa-regular fa-square'
-                "
-              />
-            </button>
-            <div class="w-2/12 flex justify-center items-center">
-              <font-awesome-icon :icon="item.category.icon" />
-            </div>
             <div
-              class="w-5/12 flex items-center overflow-x-auto whitespace-nowrap h-full"
+              class="my-2 px-4 h-12 rounded flex flex-row justify-between items-center"
+              :class="[
+                item.category.color,
+                item.completed ? 'strike-through' : false,
+              ]"
             >
-              {{ item.item }}
+              <button
+                @click="store.toggleCompleted(item.id, item.completed)"
+                class="cursor-pointer w-2/12 flex justify-center items-center"
+              >
+                <font-awesome-icon
+                  :icon="
+                    item.completed
+                      ? 'fa-regular fa-square-check'
+                      : 'fa-regular fa-square'
+                  "
+                />
+              </button>
+              <div class="w-2/12 flex justify-center items-center">
+                <font-awesome-icon :icon="item.category.icon" />
+              </div>
+              <div
+                class="w-5/12 flex items-center overflow-x-auto whitespace-nowrap h-full"
+              >
+                {{ item.item }}
+              </div>
+              <div class="ml-2 flex items-center w-3/12 whitespace-nowrap">
+                {{ `x ${item.quantity} ${item.units}` }}
+              </div>
+              <button
+                @click="store.toggleDeleteModal(item.id, item.item)"
+                class="ml-4 flex justify-center items-center cursor-pointer w-1/12"
+              >
+                <font-awesome-icon icon="fa-solid fa-xmark" />
+              </button>
             </div>
-            <div class="ml-2 flex items-center w-3/12 whitespace-nowrap">
-              {{ `x ${item.quantity} ${item.units}` }}
-            </div>
-            <button
-              @click="store.toggleDeleteModal(item.id, item.item)"
-              class="ml-4 flex justify-center items-center cursor-pointer w-1/12"
-            >
-              <font-awesome-icon icon="fa-solid fa-xmark" />
-            </button>
           </div>
-        </div>
+        </TransitionGroup>
       </div>
     </template>
   </div>
@@ -116,5 +118,15 @@ const store = useGroceryListStore();
 
 .spinner {
   margin: 0 auto;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 </style>
