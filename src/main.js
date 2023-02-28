@@ -31,7 +31,6 @@ import {
   faCar,
   faBasketShopping,
   faList,
-  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";

@@ -3,7 +3,15 @@
     <div v-if="storeAuth.user.id" class="absolute bg-slate-200 h-12 w-full">
       <div class="mx-auto max-w-screen-md h-full">
         <p class="float-left text-xs mt-4 ml-4 md:ml-12">
-          Hello, <strong>{{ storeAuth.user.email }} 👋</strong>
+          Hello,
+          <strong
+            >{{
+              storeAuth.user.email.length > 26
+                ? `${storeAuth.user.email.slice(0, 26)}...`
+                : storeAuth.user.email
+            }}
+            👋</strong
+          >
         </p>
         <button
           @click="storeAuth.logoutUser"
@@ -30,7 +38,7 @@
           class="mr-8 text-base"
           :class="!infoTab ? 'underline' : false"
           :to="{ name: 'view-auth' }"
-          ><font-awesome-icon icon="fa-solid fa-arrow-left" /> Home</RouterLink
+          >Home</RouterLink
         >
         <RouterLink
           @click="infoTab = true"
