@@ -35,15 +35,11 @@
           No list items here yet...
         </p>
       </div>
-      <div
+      <ul
         class="container mx-auto flex flex-col items-center text-sm overflow-y-scroll"
       >
-        <TransitionGroup name="list" tag="div">
-          <div
-            v-for="(item, index) in store.groceryList"
-            :key="index"
-            class="item"
-          >
+        <TransitionGroup name="list" tag="ul">
+          <li v-for="item in store.groceryList" :key="item.id" class="item">
             <div
               class="my-2 px-4 h-12 rounded flex flex-row justify-between items-center"
               :class="[
@@ -81,9 +77,9 @@
                 <font-awesome-icon icon="fa-solid fa-xmark" />
               </button>
             </div>
-          </div>
+          </li>
         </TransitionGroup>
-      </div>
+      </ul>
     </template>
   </div>
 </template>
@@ -120,13 +116,21 @@ const store = useGroceryListStore();
   margin: 0 auto;
 }
 
+.list-move, /* apply transition to moving elements */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
 }
+
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
   transform: translateY(-30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
 }
 </style>
