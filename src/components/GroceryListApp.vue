@@ -26,18 +26,9 @@
       <nav class="h-24 w-full flex justify-center pt-16 bg-gray-600 text-white">
         <RouterLink
           @click="infoTab = false"
-          v-if="storeAuth.user.id"
           class="mr-8 text-base"
           :class="!infoTab ? 'underline' : false"
           :to="{ name: 'view-grocery-list' }"
-          >My list</RouterLink
-        >
-        <RouterLink
-          @click="infoTab = false"
-          v-if="!storeAuth.user.id"
-          class="mr-8 text-base"
-          :class="!infoTab ? 'underline' : false"
-          :to="{ name: 'view-auth' }"
           >Home</RouterLink
         >
         <RouterLink
