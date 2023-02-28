@@ -1,4 +1,3 @@
-<script setup></script>
 <template>
   <div>
     <h1 class="mb-4 text-center text-4xl">404 PAGE NOT FOUND</h1>
@@ -7,4 +6,5 @@
     </p>
   </div>
 </template>
+<script setup></script>
 <style scoped></style>

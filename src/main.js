@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, markRaw } from "vue";
 import { createPinia } from "pinia";
 
 import App from "./App.vue";
@@ -30,6 +30,8 @@ import {
   faStapler,
   faCar,
   faBasketShopping,
+  faList,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
@@ -59,11 +61,18 @@ library.add(
   faBasketShopping,
   faSquare,
   faSquareCheck,
-  faXmark
+  faXmark,
+  faList
 );
 
+const pinia = createPinia();
+
+pinia.use(({ store }) => {
+  store.router = markRaw(router);
+});
+
 createApp(App)
+  .use(pinia)
   .component("FontAwesomeIcon", FontAwesomeIcon)
-  .use(createPinia())
   .use(router)
   .mount("#app");

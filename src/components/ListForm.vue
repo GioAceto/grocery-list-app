@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <form
-      @submit.prevent="addItemAndClear(item)"
+      @submit.prevent="addProductAndClear(item)"
       class="flex flex-wrap flex-col lg:flex-row"
     >
       <div class="mb-4 lg:mb-0">
@@ -26,6 +26,7 @@
           id="product"
           v-model="item"
           class="mr-4 py-2 px-4 w-48 bg-gray-200 appearance-none border-2 border-gray-200 rounded text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+          :class="store.invalidEntry.item ? 'border-red-300 bg-red-100' : false"
           type="text"
         />
       </div>
@@ -37,6 +38,7 @@
           id="quantity"
           v-model="qty"
           class="mr-2 py-2 px-4 w-20 bg-gray-200 appearance-none border-2 border-gray-200 rounded text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+          :class="store.invalidEntry.qty ? 'border-red-300 bg-red-100' : false"
           type="text"
           maxLength="4"
         />
@@ -51,7 +53,7 @@
         </select>
       </div>
       <button
-        @click.prevent="addItemAndClear"
+        @click.prevent="addProductAndClear"
         class="cursor-pointer shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
       >
         Add
@@ -70,15 +72,8 @@ const units = ref("lb");
 
 const store = useGroceryListStore();
 
-const addItemAndClear = () => {
-  if (
-    category.value.length === 0 ||
-    item.value.length === 0 ||
-    qty.value.length === 0
-  ) {
-    return;
-  }
-  store.addItem(item, category, qty, units);
+const addProductAndClear = () => {
+  store.addProduct(item, category, qty, units);
 };
 </script>
 <style scoped>

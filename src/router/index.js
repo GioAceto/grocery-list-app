@@ -1,27 +1,50 @@
 import { createRouter, createWebHistory } from "vue-router";
-import GroceryListPage from "@/views/GroceryListPage.vue";
-import AboutPage from "@/views/AboutPage.vue";
-import NotFoundPage from "@/views/NotFoundPage.vue";
+import { useStoreAuth } from "@/stores/storeAuth";
+import ViewGroceryList from "@/views/View-GroceryList.vue";
+import ViewAbout from "@/views/View-About.vue";
+import ViewAuth from "@/views/View-Auth.vue";
+import View404 from "@/views/View-404.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
-      name: "grocery-list-page",
-      component: GroceryListPage,
+      name: "view-grocery-list",
+      component: ViewGroceryList,
       props: (route) => ({ page: parseInt(route.query.page) || 1 }),
     },
     {
+      path: "/login",
+      name: "view-auth",
+      component: ViewAuth,
+    },
+    {
       path: "/about",
-      name: "about-page",
-      component: AboutPage,
+      name: "view-about",
+      component: ViewAbout,
     },
     {
       path: "/:pathMatch(.*)",
-      component: NotFoundPage,
+      component: View404,
     },
   ],
+});
+
+router.beforeEach((to, from) => {
+  const storeAuth = useStoreAuth();
+  if (
+    !storeAuth.user.id &&
+    to.name !== "view-auth" &&
+    to.name !== "view-about"
+  ) {
+    return {
+      name: "view-auth",
+    };
+  }
+  if (storeAuth.user.id && to.name === "view-auth") {
+    return false;
+  }
 });
 
 export default router;
