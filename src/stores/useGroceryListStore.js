@@ -3,11 +3,13 @@ import {
   collection,
   onSnapshot,
   doc,
+  setDoc,
   deleteDoc,
   updateDoc,
   query,
   orderBy,
   addDoc,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "../js/firebase";
 import { useStoreAuth } from "@/stores/storeAuth";
@@ -16,6 +18,7 @@ let productsCollectionRef = null;
 let productsCollectionQuery = null;
 
 let getListSnapshot = null;
+let getOrderSnapshot = null;
 
 export const useGroceryListStore = defineStore("groceryList", {
   // state
@@ -32,6 +35,7 @@ export const useGroceryListStore = defineStore("groceryList", {
       item: null,
       category: null,
     },
+    groupedOrder: null,
     duplicateFound: false,
     categories: [
       {
@@ -180,15 +184,59 @@ export const useGroceryListStore = defineStore("groceryList", {
     ],
   }),
   actions: {
-    init() {
+    async checkAndAddOrder() {
       const storeAuth = useStoreAuth();
+      const orderCollectionRef = doc(
+        db,
+        "users",
+        storeAuth.user.id,
+        "order",
+        "order"
+      );
+      const docSnap = await getDoc(orderCollectionRef);
+
+      if (docSnap.exists()) {
+        if (docSnap.data().order != null) {
+          this.groupedOrder = docSnap.data().order;
+          return;
+        }
+      } else {
+        await setDoc(doc(db, "users", storeAuth.user.id, "order", "order"), {
+          order: true,
+        });
+        this.groupedOrder = true;
+      }
+    },
+    async init() {
+      const storeAuth = useStoreAuth();
+
       productsCollectionRef = collection(
         db,
         "users",
         storeAuth.user.id,
         "products"
       );
-      productsCollectionQuery = query(productsCollectionRef, orderBy("id"));
+
+      const orderCollectionRef = doc(
+        db,
+        "users",
+        storeAuth.user.id,
+        "order",
+        "order"
+      );
+
+      const docSnap = await getDoc(orderCollectionRef);
+
+      if (docSnap.exists()) {
+        if (docSnap.data().order === true) {
+          productsCollectionQuery = query(productsCollectionRef, orderBy("id"));
+        } else {
+          productsCollectionQuery = query(
+            productsCollectionRef,
+            orderBy("date")
+          );
+        }
+      }
       this.getProducts();
     },
     async getProducts() {
@@ -206,6 +254,7 @@ export const useGroceryListStore = defineStore("groceryList", {
               item: doc.data().item,
               quantity: doc.data().quantity,
               units: doc.data().units,
+              date: doc.data().date,
             };
             products.push(product);
           });
@@ -216,6 +265,7 @@ export const useGroceryListStore = defineStore("groceryList", {
           console.log("error.message: ", error.message);
         }
       );
+      this.checkAndAddOrder();
     },
     clearList() {
       this.groceryList = [];
@@ -223,6 +273,9 @@ export const useGroceryListStore = defineStore("groceryList", {
       // unsubscribe from any active listener
       if (getListSnapshot) {
         getListSnapshot();
+      }
+      if (getOrderSnapshot) {
+        getOrderSnapshot();
       }
     },
     async addProduct(item, category, qty, units) {
@@ -281,6 +334,7 @@ export const useGroceryListStore = defineStore("groceryList", {
         quantity: qty.value,
         units: units.value,
         completed: false,
+        date: currentDate,
       });
       this.invalidEntry = {
         item: false,
@@ -299,6 +353,13 @@ export const useGroceryListStore = defineStore("groceryList", {
     toggleDeleteModal(id, item) {
       this.selectedItem = { id: id, item: item };
       this.showDeleteModal = true;
+    },
+    async toggleOrder() {
+      const storeAuth = useStoreAuth();
+      await updateDoc(doc(db, "users", storeAuth.user.id, "order", "order"), {
+        order: this.groupedOrder,
+      });
+      this.init();
     },
   },
 });

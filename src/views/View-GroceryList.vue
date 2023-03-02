@@ -2,10 +2,24 @@
   <div class="grocery-list">
     <DeleteModal v-if="store.showDeleteModal" />
     <DuplicateModal v-if="store.duplicateFound" />
-    <div class="mb-8 flex justify-center">
+    <div class="mb-4 flex justify-center">
       <ListForm />
     </div>
-
+    <div class="mb-4 flex justify-left px-4">
+      <label class="relative inline-flex items-center cursor-pointer">
+        <input
+          type="checkbox"
+          class="sr-only peer"
+          checked
+          v-model="store.groupedOrder"
+          @change="store.toggleOrder"
+        />
+        <div
+          class="mr-1 w-8 h-4 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-gray after:content-[''] after:absolute after:left-[1px] after:bottom-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"
+        ></div>
+        <span class="ml-3 text-sm text-black">Group by category</span>
+      </label>
+    </div>
     <div v-if="!store.productsLoaded" role="status">
       <svg
         aria-hidden="true"
