@@ -209,7 +209,7 @@ export const useGroceryListStore = defineStore("groceryList", {
     },
     async init() {
       const storeAuth = useStoreAuth();
-
+      this.checkAndAddOrder();
       productsCollectionRef = collection(
         db,
         "users",
@@ -236,6 +236,8 @@ export const useGroceryListStore = defineStore("groceryList", {
             orderBy("date")
           );
         }
+      } else {
+        productsCollectionQuery = query(productsCollectionRef, orderBy("id"));
       }
       this.getProducts();
     },
@@ -265,7 +267,6 @@ export const useGroceryListStore = defineStore("groceryList", {
           console.log("error.message: ", error.message);
         }
       );
-      this.checkAndAddOrder();
     },
     clearList() {
       this.groceryList = [];
