@@ -10,7 +10,6 @@
         <input
           type="checkbox"
           class="sr-only peer"
-          checked
           v-model="store.groupedOrder"
           @change="store.toggleOrder"
         />

@@ -198,7 +198,6 @@ export const useGroceryListStore = defineStore("groceryList", {
       if (docSnap.exists()) {
         if (docSnap.data().order != null) {
           this.groupedOrder = docSnap.data().order;
-          return;
         }
       } else {
         await setDoc(doc(db, "users", storeAuth.user.id, "order", "order"), {
@@ -206,10 +205,10 @@ export const useGroceryListStore = defineStore("groceryList", {
         });
         this.groupedOrder = true;
       }
+      this.init();
     },
     async init() {
       const storeAuth = useStoreAuth();
-      this.checkAndAddOrder();
       productsCollectionRef = collection(
         db,
         "users",

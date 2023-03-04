@@ -20,7 +20,7 @@ export const useStoreAuth = defineStore("storeAuth", {
           this.user.id = user.uid;
           this.user.email = user.email;
           this.router.push("/");
-          store.init();
+          store.checkAndAddOrder();
         } else {
           this.user = {};
           this.router.replace("/login");
